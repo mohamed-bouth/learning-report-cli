@@ -56,45 +56,45 @@ const resources = [
         completedBy: ["Amina", "Yassine", "Sara", "Nabil", "Karim", "Imane"]
     },
     {
-        id: "RES-005", 
+        id: "RES-005",
         title: "Structurer un projet backend",
-        category: "Backend", 
-        level: "advanced", 
+        category: "Backend",
+        level: "advanced",
         format: "workshop",
-        durationMinutes: 90, 
+        durationMinutes: 90,
         publishedAt: "2026-07-14",
         tags: ["architecture", "modules"],
         completedBy: ["Mehdi", "Omar"]
     },
     {
-        id: "RES-006", 
+        id: "RES-006",
         title: "Git au quotidien",
-        category: "Git/GitHub", 
-        level: "beginner", 
+        category: "Git/GitHub",
+        level: "beginner",
         format: "article",
-        durationMinutes: 25, 
+        durationMinutes: 25,
         publishedAt: "2026-06-30",
         tags: ["git", "workflow"],
         completedBy: ["Amina", "Karim", "Sara", "Imane", "Omar"]
     },
     {
-        id: "RES-007", 
+        id: "RES-007",
         title: "Resoudre un conflit de merge",
-        category: "Git/GitHub", 
-        level: "intermediate", 
+        category: "Git/GitHub",
+        level: "intermediate",
         format: "quiz",
-        durationMinutes: 20, 
+        durationMinutes: 20,
         publishedAt: "2026-09-12",
         tags: ["git", "merge"],
         completedBy: ["Yassine", "Mehdi", "Nabil"]
     },
     {
-        id: "RES-008", 
+        id: "RES-008",
         title: "Modeliser une base de donnees relationnelle",
-        category: "Database", 
-        level: "intermediate", 
+        category: "Database",
+        level: "intermediate",
         format: "workshop",
-        durationMinutes: 100, 
+        durationMinutes: 100,
         publishedAt: "2026-05-19",
         tags: ["sql", "modelisation"],
         completedBy: ["Sara", "Karim"]
@@ -103,59 +103,59 @@ const resources = [
 
 // Etap 4 :
 
-function countResources(resources){
+function countResources(resources) {
     return resources.length
 }
 
-function getTotalDuration(resources){
+function getTotalDuration(resources) {
     const duration = resources.reduce((total, resource) => {
         return total += resource.durationMinutes
-    },0)
+    }, 0)
 
     return duration
 }
 
-function getAverageDuration(resources){
+function getAverageDuration(resources) {
     const duration = resources.reduce((total, resource) => {
         return total += resource.durationMinutes
-    },0)
+    }, 0)
 
-    const durationAverage = duration / duration.length
+    const durationAverage = duration / resources.length
 
     return durationAverage
 }
 
-function countByLevel(resources){
+function countByLevel(resources) {
     const niveaus = resources.reduce((acc, resource) => {
-        if(!acc[resource.level]){
+        if (!acc[resource.level]) {
             acc[resource.level] = [resource]
             return acc
         }
         acc[resource.level].push(resource)
         return acc
 
-    },{})
+    }, {})
 
     return niveaus
 }
 
-function countByCategory(resources){
+function countByCategory(resources) {
     const categories = resources.reduce((acc, resource) => {
-        if(!acc[resource.category]){
+        if (!acc[resource.category]) {
             acc[resource.category] = [resource]
             return acc
         }
         acc[resource.category].push(resource)
         return acc
 
-    },{})
+    }, {})
 
     return categories
 }
 
-function getMostCompletedResource(resources){
+function getMostCompletedResource(resources) {
     const MostCompleted = resources.reduce((most, resource) => {
-        if(resource.completedBy.length > most.completedBy.length){
+        if (resource.completedBy.length > most.completedBy.length) {
             return resource
         }
         return most
@@ -164,6 +164,56 @@ function getMostCompletedResource(resources){
     return MostCompleted
 }
 
-function filterByCategory(resources, category){
+function filterByCategory(resources, category) {
     return resources.filter(resource => resource.category === category)
 }
+
+console.log(getAverageDuration(resources))
+
+// Etap 5 :
+
+function buildReport({
+    resourceNumber,
+    totalDuration,
+    averageDuration,
+    levels,
+    categories,
+    mostCompleted
+}) {
+    return `
+            ================================
+            LEARNING RESOURCES REPORT
+            ================================
+
+            Resources: ${resourceNumber}
+            Beginner: ${levels.beginner.length}
+            Intermediate: ${levels.intermediate.length}
+            Advanced: ${levels.advanced.length}
+
+            Total resources: ${resourceNumber}
+            Total duration: ${totalDuration} min
+            Average duration: ${averageDuration} min
+
+            Resources by category:
+            JavaScript: ${categories.JavaScript.length}
+            Backend: ${categories.Backend.length}
+            Git/GitHub: ${categories["Git/GitHub"].length}
+            Database: ${categories.Database.length}
+
+            Most completed:
+            ${mostCompleted.title} - ${mostCompleted.completedBy.length} learners
+            `;
+
+}
+
+const report = buildReport({
+    resourceNumber: countResources(resources),
+    totalDuration: getTotalDuration(resources),
+    averageDuration: getAverageDuration(resources),
+    levels: countByLevel(resources),
+    categories: countByCategory(resources),
+    mostCompleted: getMostCompletedResource(resources)
+})
+
+console.log(report)
+
