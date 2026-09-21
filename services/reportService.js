@@ -1,4 +1,4 @@
-function buildReport({
+export function buildReport({
     resourceNumber,
     totalDuration,
     averageDuration,
@@ -31,5 +31,3 @@ function buildReport({
             `;
 
 }
-
-module.exports = {buildReport}

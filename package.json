@@ -1,0 +1,20 @@
+{
+  "name": "learning-report-cli",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/mohamed-bouth/learning-report-cli#readme",
+  "bugs": {
+    "url": "https://github.com/mohamed-bouth/learning-report-cli/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohamed-bouth/learning-report-cli.git"
+  },
+  "license": "ISC",
+  "author": "mohamed-bouth",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

@@ -1,9 +1,9 @@
-const resources = require("./data/resources")
-const calcul = require("./services/resourceService.js")
-const report = require("./services/reportService")
+import resources from "./data/resources.js"
+import * as calcul from "./services/resourceService.js"
+import { buildReport } from "./services/reportService.js"
 
 
-const result = report.buildReport({
+const result = buildReport({
     resourceNumber: calcul.countResources(resources),
     totalDuration: calcul.getTotalDuration(resources),
     averageDuration: calcul.getAverageDuration(resources),
@@ -12,6 +12,5 @@ const result = report.buildReport({
     mostCompleted: calcul.getMostCompletedResource(resources)
 })
 
-require("./firstModule.js")
-require("./secondModule.js")
+console.log(result)
 

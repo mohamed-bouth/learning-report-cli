@@ -1,9 +1,9 @@
 
-function countResources(resources) {
+export function countResources(resources) {
     return resources.length
 }
 
-function getTotalDuration(resources) {
+export function getTotalDuration(resources) {
     const duration = resources.reduce((total, resource) => {
         return total += resource.durationMinutes
     }, 0)
@@ -11,7 +11,7 @@ function getTotalDuration(resources) {
     return duration
 }
 
-function getAverageDuration(resources) {
+export function getAverageDuration(resources) {
     const duration = resources.reduce((total, resource) => {
         return total += resource.durationMinutes
     }, 0)
@@ -21,7 +21,7 @@ function getAverageDuration(resources) {
     return durationAverage
 }
 
-function countByLevel(resources) {
+export function countByLevel(resources) {
     const niveaus = resources.reduce((acc, resource) => {
         if (!acc[resource.level]) {
             acc[resource.level] = [resource]
@@ -35,7 +35,7 @@ function countByLevel(resources) {
     return niveaus
 }
 
-function countByCategory(resources) {
+export function countByCategory(resources) {
     const categories = resources.reduce((acc, resource) => {
         if (!acc[resource.category]) {
             acc[resource.category] = [resource]
@@ -49,7 +49,7 @@ function countByCategory(resources) {
     return categories
 }
 
-function getMostCompletedResource(resources) {
+export function getMostCompletedResource(resources) {
     const MostCompleted = resources.reduce((most, resource) => {
         if (resource.completedBy.length > most.completedBy.length) {
             return resource
@@ -60,16 +60,6 @@ function getMostCompletedResource(resources) {
     return MostCompleted
 }
 
-function filterByCategory(resources, category) {
+export function filterByCategory(resources, category) {
     return resources.filter(resource => resource.category === category)
-}
-
-module.exports = {
-    countResources,
-    getTotalDuration,
-    getAverageDuration,
-    countByLevel,
-    countByCategory,
-    getMostCompletedResource,
-    filterByCategory
 }
