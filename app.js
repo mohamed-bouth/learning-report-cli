@@ -2,8 +2,6 @@ const resources = require("./data/resources")
 const calcul = require("./services/resourceService.js")
 const report = require("./services/reportService")
 
-console.log(resources.resource)
-
 
 const result = report.buildReport({
     resourceNumber: calcul.countResources(resources),
@@ -14,5 +12,6 @@ const result = report.buildReport({
     mostCompleted: calcul.getMostCompletedResource(resources)
 })
 
-console.log(result)
+require("./firstModule.js")
+require("./secondModule.js")
 
