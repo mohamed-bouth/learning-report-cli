@@ -2,7 +2,6 @@ import resources from "./data/resources.js"
 import * as calcul from "./services/resourceService.js"
 import { buildReport } from "./services/reportService.js"
 
-
 const result = buildReport({
     resourceNumber: calcul.countResources(resources),
     totalDuration: calcul.getTotalDuration(resources),
